@@ -28,7 +28,7 @@ supervisor:
     - mode: 644
     - template: jinja
 
-/etc/supervisor/supervisord.conf:
+/etc/supervisord.conf:
   file.managed:
     - source: salt://supervisor/templates/config.jinja
     - user: root
@@ -42,4 +42,4 @@ supervisor_service:
     - enable: True
     - reload: True
     - watch: 
-      - file: /etc/supervisor/supervisord.conf
+      - file: /etc/supervisord.conf
