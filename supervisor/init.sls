@@ -1,14 +1,8 @@
 {% from "supervisor/map.jinja" import supervisor with context %}
 
-python-pip:
-  pkg.installed:
-    - name: {{ supervisor.pip }}
-
 supervisor:
-  pip.installed: 
+  pkg.installed: 
     - name: {{ supervisor.package }}
-    - require: 
-      - pkg: {{ supervisor.pip }}
 
 /var/log/supervisor: 
   file.directory:
@@ -18,7 +12,7 @@ supervisor:
     - file_mode: 644
     - makedirs: True
 
-/etc/supervisor.d:
+/etc/supervisor/conf.d:
   file.directory:
     - user: root
     - group: root
@@ -26,7 +20,7 @@ supervisor:
     - file_mode: 644
     - makedirs: True
 
-/etc/supervisor.d/processes.ini:
+/etc/suprevisor/conf.d/processes.ini:
   file.managed:
     - source: salt://supervisor/templates/processes.jinja
     - user: root
@@ -34,15 +28,7 @@ supervisor:
     - mode: 644
     - template: jinja
 
-/etc/init/supervisor.conf:
-  file.managed:
-    - source: salt://supervisor/templates/supervisord_init.jinja
-    - user: root
-    - group: root
-    - mode: 644
-    - template: jinja
-
-/etc/supervisord.conf:
+/etc/suprevisor/supervisord.conf:
   file.managed:
     - source: salt://supervisor/templates/config.jinja
     - user: root
@@ -56,4 +42,4 @@ supervisor_service:
     - enable: True
     - reload: True
     - watch: 
-      - file: /etc/supervisord.conf
+      - file: /etc/supervisor/supervisord.conf

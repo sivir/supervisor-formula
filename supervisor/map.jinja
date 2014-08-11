@@ -3,10 +3,6 @@
         'pip': 'python-pip',
         'package': 'supervisor',
     },
-    'CentOS': {
-        'pip': 'python-pip',
-        'package': 'supervisor',
-    },
 } %}
 
 {% set supervisor = salt['grains.filter_by'](supervisor,
