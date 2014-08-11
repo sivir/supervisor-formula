@@ -20,7 +20,7 @@ supervisor:
     - file_mode: 644
     - makedirs: True
 
-/etc/suprevisor/conf.d/processes.ini:
+/etc/supervisor/conf.d/processes.ini:
   file.managed:
     - source: salt://supervisor/templates/processes.jinja
     - user: root
@@ -28,7 +28,7 @@ supervisor:
     - mode: 644
     - template: jinja
 
-/etc/suprevisor/supervisord.conf:
+/etc/supervisor/supervisord.conf:
   file.managed:
     - source: salt://supervisor/templates/config.jinja
     - user: root
