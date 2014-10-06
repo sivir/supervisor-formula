@@ -30,6 +30,7 @@ supervisor:
 
 /etc/supervisord.conf:
   file.managed:
+    - name: {{ supervisor.config }} 
     - source: salt://supervisor/templates/config.jinja
     - user: root
     - group: root
