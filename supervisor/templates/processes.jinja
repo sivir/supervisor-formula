@@ -1,5 +1,5 @@
 {%- set supervisor = pillar.get('supervisor', {}) -%}
-{%- for process in supervisor.get('processes') -%}
+{%- for process in supervisor.get('processes') %}
 [program:{{ process.name }}]
 command={{ process.get('command', None) }}
 directory={{ process.get('directory', '/tmp') }}
